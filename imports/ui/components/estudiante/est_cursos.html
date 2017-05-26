@@ -1,0 +1,33 @@
+<template name="estCursos">
+    <div class="row">
+        <div class="col s12 m9 l9">
+            {{#each curso in listCursos}}
+                {{> itemCurso curso}}
+            {{/each}}
+        </div>
+        <div class="col s12 m3 l3">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae fugit nobis necessitatibus ex corporis nesciunt consequatur veniam, beatae omnis, voluptates, mollitia doloremque placeat. Nihil porro, ut ipsam maiores ratione in?
+        </div>
+    </div>
+    
+
+</template>
+
+<template name="itemCurso">
+    <div class="dataclass col s12">
+        <h2 class="header">Curso de {{titulo}} </h2>
+        <div class="card horizontal">
+            <div class="card-image">
+                <img class="imagenCurso" src="{{imagen}}">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <p>{{descripcion}}</p>
+                </div>
+                <div class="card-action">
+                    <a id="active_template_a" data-template="estCursoAct" role="presentation" class="" href=""><i class="material-icons right">send</i>Ingresar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

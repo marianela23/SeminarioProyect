@@ -1,0 +1,56 @@
+<template name="estudiantePage">
+<!-- NAVBAR-->
+    <div class="">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="" class="brand-logo">PLATVIED</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down"> 
+                    <li id="active_template" data-template="estCursos" role="presentation" class="">
+                        <a href="">Home</a>
+                    </li>
+                    <li id="active_template" data-template="estMiCurso" role="presentation" class="">
+                        <a href="">Mi curso</a>
+                    </li>
+                    <li>
+                        {{#with user=usuariosActual}}
+                        <a class='dropdown-button truncate' href='' data-activates='dropdown1'>
+                            {{user.nombre}} {{user.apellidos}}
+                            <i class="material-icons right md-18">expand_more</i>
+                            <i class="material-icons right">
+                                <img src="/images/avatar.jpg" class="circle img_navEst" alt="">
+                            </i>
+                        </a>
+                        {{/with}}
+                        <ul id='dropdown1' class='dropdown-content'>
+                            <li><a href="">Perfil</a></li>
+                            <li class="divider"></li>
+                            <li><a id="logoutEst" href=""><i class="material-icons right">power_settings_new</i>Salir</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+<!-- CONTENIDO DE LA PAGINA -->
+    <dic class="content_main green">
+
+        {{#if Template.subscriptionsReady}}
+            {{> Template.dynamic template=tab data=tabData}}
+        {{else}}
+            <p>Cargando...</p>
+        {{/if}}
+    </dic>
+
+    <script>
+        $('.dropdown-button').dropdown({
+          inDuration: 300,
+          outDuration: 225,
+          constrainWidth: true, // Does not change width of dropdown to that of the activator
+          hover: false, // Activate on hover
+          gutter: 0, // Spacing from edge
+          belowOrigin: true, // Displays dropdown below the button
+          alignment: 'left', // Displays dropdown with edge aligned to the left of button
+          stopPropagation: false // Stops event propagation
+        });
+    </script>
+</template>

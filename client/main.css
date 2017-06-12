@@ -1,0 +1,22 @@
+/* CSS declarations go here */
+.log_avatar{
+	width: 120px;
+	margin-top: -15px;
+	margin-bottom: -20px;
+}
+.modal_login{
+	width: 400px;
+}
+.mostrar_pass{
+	margin-left: 57px;
+	margin-top: -25px;
+}
+.avatar_reg{
+    width: 150px;
+    height: 150px;
+}
+.facebook{
+    width: 30px;
+    margin-left: 20px;
+    margin-top: 3px;
+}

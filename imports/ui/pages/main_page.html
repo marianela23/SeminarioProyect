@@ -1,0 +1,276 @@
+<template name="mainPage">
+	<nav>
+		<div class="nav-wrapper">
+			<a href="" class="brand-logo">PLATVIED</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+                {{#if currentUser}}
+                    <li>
+                        <a href="" id="logout"><i class="material-icons right">account_circle</i>Sign Out</a>
+                    </li>
+                {{else}}
+        		<li><a href="">Home</a></li>
+        		<li><a href="">Cursos</a></li>
+        		<li><a href="">JavaScript</a></li>
+        		<li>
+        			<a href="#modalLogin"><i class="material-icons right">account_circle</i>Sign In</a>
+        		</li>
+                {{/if}}
+      		</ul>
+		</div>
+	</nav>
+<!-- SLIDER -->
+	<div class="parallax-container">
+    	<div class="slider fullscreen">
+    		<ul class="slides">
+        		<li>
+	            	<img src="/images/slider1.jpg"> <!-- random image -->
+	            	<div class="caption center-align">
+	              		<h3>Aprende a programar</h3>
+	              		<h5 class="light grey-text text-lighten-3">Cursos faciles de entender</h5>
+	            	</div>
+          		</li>
+          		<li>
+			        <img src="/images/slider2.jpg"> <!-- random image -->
+			        <div class="caption left-align">
+			          	<h3>Left Aligned Caption</h3>
+			          	<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+			        </div>
+			     </li>
+			     <li>
+			        <img src="/images/slider3.jpg"> <!-- random image -->
+			        <div class="caption right-align">
+			          	<h3>Right Aligned Caption</h3>
+			          	<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+			        </div>
+			    </li>
+    		</ul>
+  		</div>
+  	</div>
+ <!-- SECTION WHITE -->
+  	<div class="section white">
+    	<div id="team" class="section scrollspy">
+        <div class="row">
+          <h2 class="header">Conozca al equipo</h2>
+          <p class="caption">We are a team of students from Carnegie Mellon University.</p>
+          <div class="s12 center">
+            <div class="image-container">
+              <img src="images/materialize_team.jpeg" style="width:100%;">
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col s12 m3 center-on-small-only">
+            <div class="image-container">
+              <img src="images/alvin.png">
+            </div>
+          </div>
+          <div class="col s12 m9">
+            <h4>Alvin Wang</h4>
+            <p>Alvin is an Information Systems and Human Computer Interaction Major. He worked as a Software Engineer at Fidelity Investments this past summer.</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12 m3 center-on-small-only">
+            <div class="image-container">
+              <img src="images/Alan.png">
+              </div>
+          </div>
+          <div class="col s12 m9">
+            <h4>Alan Chang</h4>
+            <p>Alan is an Information Systems major with a minor in computer science. He worked at as a Front End Developer at Shift Collaborative this past summer.</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12 m3 center-on-small-only">
+            <div class="image-container">
+            <img src="images/alex.png">
+              </div>
+          </div>
+          <div class="col s12 m9">
+            <h4>Alex Mark</h4>
+            <p>Alex is an Information Systems major with a minor in Human Computer Interaction. He worked as a software developer for Intuit this past summer.</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12 m3 center-on-small-only">
+            <div class="image-container">
+            <img src="images/kevin.png">
+              </div>
+          </div>
+          <div class="col s12 m9">
+            <h4>Kevin Louie</h4>
+            <p>Kevin is an Information Systems major with a minor in Human Computer Interaction. This past summer, he worked as a technology analyst at PPG Industries.</p>
+          </div>
+        </div>
+      </div>
+  	</div>
+    
+	<!-- Modal login -->
+	<div id="modalLogin" class="modal modal_login">
+    	<div class="modal-content">
+	      	<form action="submit" id="form_login" class="col s12">
+	      		<div class="row center-align">
+	      			<img src="/images/avatar.jpg" alt="" class="circle responsive-img log_avatar">
+	      		</div>
+	      		<div class="row">
+	      			<div class="input-field col s12">
+	      				<i class="material-icons prefix">account_circle</i>
+	      				<input type="email" id="loginEmail" class="validate"  required autofocus>
+	      				<label for="loginEmail" data-error="No ingreso un correo" data-success="">Email</label>
+	      			</div>
+	      			<div class="input-field col s12">
+	      				<i class="material-icons prefix">lock</i>
+	      				<input type="password" id="loginPassword" class="validate"  required>
+	      				<label for="loginPassword">Contraseña</label>
+	      			</div>
+	      		</div>
+	      		<p class="mostrar_pass">
+	      			<input type="checkbox" class="filled-in" id="filled-in-box">
+	      			<label for="filled-in-box">Mostrar contraseña</label>
+	      		</p>
+	      		<br>
+				<div class="center-align">
+					<button id="btn_login" class="btn wabes-effect wabes-light">
+						Login
+						<i class="material-icons right">send</i>
+					</button>
+				</div> <br>
+                <div class="center-align">
+                    <button id="btnLoginFacebook" class="btn wabes-effect wabes-light blue darken-3">
+                        Iniciar con facebook
+                        <img class="responsive-img facebook right" src="/images/facebook.png" alt="">
+                    </button>
+                </div>
+				<p class="center-align"><a id="registrate_aqui" class="" href="">Registrate aqui</a></p>
+	      	</form>
+	    </div>
+  	</div>
+  	<!-- Modal Reg -->
+	<div id="modalRegistro" class="modal">
+    	<div class="modal-content"> 	
+			<div class="row">
+				<div class="col s6">
+					<div class="card-panel">
+						<div class="row center-align">
+	      					<img src="/images/avatarFac.jpg" alt="" class="circle responsive-img avatar_reg">
+	      				</div>
+	      				<div class="row center-align">
+	      					<span class="title">REGISTRARME COMO FACILITADOR</span>
+	      				</div>
+                        <div class="row center-align">
+                            <a id="btnRegFacilitador" href="" class="waves-effect waves-light btn">
+                                <i class="material-icons right">mode_edit</i>
+                                Registrarme
+                            </a>
+                        </div>
+					</div>
+				</div>
+				<div class="col s6">
+					<div class="card-panel">
+						<div class="row center-align">
+                            <img src="/images/avatarEst.png" alt="" class="circle responsive-img avatar_reg">
+                        </div>
+                        <div class="row center-align">
+                            <span class="title">REGISTRARME COMO ESTUDIANTE</span>
+                        </div>
+                        <div class="row center-align">
+                            <a id="btnRegEstudiante" class="waves-effect waves-light btn">
+                                <i class="material-icons right">mode_edit</i>
+                                Registrarme
+                            </a>
+                        </div>
+					</div>
+				</div>
+			</div>
+	    </div>
+  	</div>
+    <!-- Modal login -->
+    <div id="modalRegEstudiante" class="modal modal_registro">
+        <div class="modal-content">
+            <form action="submit" id="form_reg_est" class="col s12">
+                <div class="row center-align">
+                    <h3 class="title teal-text">Formulario de registro</h3>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">person</i>
+                        <input type="text" id="reg_estNombre" class="validate"  required autofocus>
+                        <label for="reg_estNombre">Nombre</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">person</i>
+                        <input type="text" id="reg_estApellido" class="validate"  required>
+                        <label for="reg_estApellido">Apellido</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">school</i>
+                        <input type="text" id="reg_estCarrera" class="validate"  required>
+                        <label for="reg_estCarrera">Carrera</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input type="text" id="reg_estNick" class="validate"  required>
+                        <label for="reg_estNick">Usuario (Nick)</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">email</i>
+                        <input type="email" id="reg_estEmail" class="validate"  required>
+                        <label for="reg_estEmail" data-error="No ingreso un correo" data-success="">Email</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">lock</i>
+                        <input type="password" id="reg_estPassword" class="validate"  required>
+                        <label for="reg_estPassword">Contraseña</label>
+                    </div>
+                </div>
+                <p class="mostrar_pass">
+                    <input type="checkbox" class="filled-in" id="mostrar_pass_reg">
+                    <label for="mostrar_pass_reg">Mostrar contraseña</label>
+                </p>
+                <br>
+                <div class="center-align col s12">
+                    <button id="btnRegistrorEst" class="btn wabes-effect wabes-light">
+                        Registro
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div><br>
+                
+            </form>
+        </div>
+    </div>
+<!-- SCRIPTS -->
+  <script>
+  	//activa slider
+  	 $(document).ready(function(){
+      $('.slider').slider();
+    });
+  	 // inicializa modal
+  	$(document).ready(function(){
+    	$('.modal').modal();
+  	});
+  	//mostrar contraseña
+  	$(document).ready(function(){
+    	$('#filled-in-box').click(function(){
+    		if($('#filled-in-box').is(':checked')){
+    			$('#loginPassword').attr('type','text');
+    		}else{
+    			$('#loginPassword').attr('type','password');
+    		}
+  		});
+	});
+    $(document).ready(function(){
+        $('#mostrar_pass_reg').click(function(){
+            if($('#mostrar_pass_reg').is(':checked')){
+                $('#reg_estPassword').attr('type','text');
+            }else{
+                $('#reg_estPassword').attr('type','password');
+            }
+        });
+    });       
+  </script> 
+</template>

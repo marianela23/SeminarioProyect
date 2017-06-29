@@ -1,14 +1,15 @@
 import { Meteor } from 'meteor/meteor';
-import {Usuarios} from '../imports/api/collections/collections.js';
-import {Cursos} from '../imports/api/collections/collections.js';
-import pubs from '../imports/api/collections/server/publications.js';
-import {regUsuario} from '../imports/api/collections/methods.js';
+import '../imports/database/models.js';
+import {crs} from '../imports/database/models.js';
 
-pubs();
-/*
-PORQUE  NO DA
-*/
-/*Meteor.startup(() => {
+Meteor.startup(() => {
   // code to run on server at startup
+});
+
+
+/*Meteor.methods({
+  insertUser:function(newUserData){
+    return Accounts.createUser(newUserData);
+  },
 });
 */

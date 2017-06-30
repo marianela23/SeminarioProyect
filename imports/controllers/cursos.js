@@ -5,6 +5,10 @@ import {ars} from '../database/models.js';
 import '../templates/cursos.html';
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> marianela
 if (Meteor.isClient) {
 
     Meteor.call("fullcursos", function(err, res) {
@@ -30,7 +34,10 @@ if (Meteor.isClient) {
             var curso = crs.findOne({
                 sigla: appId
             });
+<<<<<<< HEAD
             console.log(curso)
+=======
+>>>>>>> marianela
             return curso;
         }
     });
@@ -56,10 +63,17 @@ if (Meteor.isClient) {
             if (!archivos) return;
             for(var i=0; i<archivos.length  ;i++){
                 file = archivos[i]
+<<<<<<< HEAD
                 var reader = new FileReader(); //create a reader according to HTML5 File API
                 reader.onload = function(event){          
                 var buffer = new Uint8Array(reader.result) // convert to binary
                 
+=======
+                console.log(file)
+                var reader = new FileReader(); //create a reader according to HTML5 File API
+                reader.onload = function(event){  
+                var buffer = new Uint8Array(reader.result) // convert to binary
+>>>>>>> marianela
                 Meteor.call('saveFile', buffer,nombre,descripcion,sigla);
                 }
                 reader.readAsArrayBuffer(file); //read the file as arraybuffer
@@ -87,4 +101,37 @@ if (Meteor.isClient) {
         }*/
 
     })
+<<<<<<< HEAD
+=======
+
+    Template.ver_curso.onCreated(function () {
+        var appId = FlowRouter.getParam("sigla");
+        Meteor.call("GetDecodeArchivos",appId, function(err, res) {
+                if (err) {
+                    console.log('Error: ' + err);
+                }
+                if (!err) {
+                    Session.set('GetDecodeArchivos', res);
+                }
+        });
+    });
+
+    Template.ver_curso.helpers({
+        VerMaterialCurso: () => {
+            console.log(Session.get('GetDecodeArchivos'))
+            return Session.get('GetDecodeArchivos');
+        },
+        ExisteMaterial:(archivos) =>{
+            console.log(archivos)
+            if(archivos > 0){
+                return true;
+            }else{
+                return false
+            }
+        },
+        archivoCurso: (data) => { 
+            console.log("archivoCurso")
+        }
+    })
+>>>>>>> marianela
 }

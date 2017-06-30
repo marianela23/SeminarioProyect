@@ -3,10 +3,29 @@ import '../../imports/templates/main_home.html';
 //var myLogoutFunc = function(){
 //    FlowRouter.go('/main')
 //}
+<<<<<<< HEAD
 
 Template.main_principal.helpers({
   firstName: function() {
     return Meteor.user().profile.firstName;
+=======
+Meteor.subscribe('usuario')
+
+/*Template.main_principal.helpers({
+
+    username: function() {
+        var u = Meteor.user().profile.Username;
+        //var user = Meteor.users.findOne()
+        //console.log(u)
+        return
+        //return Meteor.user().profile.first_name;
+    }
+});*/
+
+Template.user.helpers({
+  firstName: function() {
+    return Meteor.user().profile.Username;
+>>>>>>> marianela
   }
 });
 
@@ -32,6 +51,11 @@ AccountsTemplates.configure({
  //   onLogoutHook:myLogoutFunc,
 });
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> marianela
 AccountsTemplates.addFields([
     {
     _id:'Carrera',
@@ -39,6 +63,14 @@ AccountsTemplates.addFields([
     displayName:'Carrera',
     required: true,
     },{
+<<<<<<< HEAD
+=======
+    _id:'Username',
+    type:'text',
+    displayName:'username',
+    required: true,
+    },{
+>>>>>>> marianela
     _id:'Apellidos',
     type:'text',
     displayName:'apellidos',
@@ -70,4 +102,12 @@ AccountsTemplates.addFields([
             },
         ]
     }
+<<<<<<< HEAD
 ]);
+=======
+]);
+
+/*Accounts.ui.config({
+    passwordSignupFields:'USERNAME_AND_EMAIL'
+})*/
+>>>>>>> marianela

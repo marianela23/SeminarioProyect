@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/database/models.js';
 import {crs} from '../imports/database/models.js';
+import {crsMaster} from '../imports/database/models.js';
 import {ars} from '../imports/database/models.js';
+import {fls} from '../imports/database/models.js';
 
 Meteor.methods({
   fullcursos:function(){
@@ -234,14 +236,45 @@ Meteor.methods({
             archivo.push(new Buffer(M[i]['material']['buffer']).toString('base64'))
         }
         return archivo
+    },
+    'file-upload': function (fileInfo, fileData) {
+      console.log("received file " + fileInfo.name + " data: " + fileData);
+      FS.writeFile(fileInfo.name, fileData);
     }
 >>>>>>> marianela
 });
+
+
+fls.allow({
+  'insert': function () {
+    // add custom authentication code here
+    console.log("entro")
+    return true;
+  } 
+})
+
 
 Meteor.publish('crs', function() {
   return crs.find();
 <<<<<<< HEAD
 });
+<<<<<<< HEAD
 =======
 });
+>>>>>>> marianela
+=======
+
+Meteor.publish('files', function() {
+  return fls.find();
+});
+
+Meteor.publish('archivos', function() {
+  //console.log(ars.find().fetch())
+  return ars.find();
+})
+
+Meteor.publish('cursosMaster', function() {
+  return crsMaster.find();
+});
+
 >>>>>>> marianela

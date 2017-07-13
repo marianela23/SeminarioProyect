@@ -4,21 +4,14 @@ import '../imports/database/models.js';
 import {ars} from '../imports/database/models.js';
 
 var postSignUp = function(userId,info){
-<<<<<<< HEAD
-    console.log(userId)
-    console.log(info.profile.profession)
-=======
->>>>>>> marianela
     //Roles.addUsersToRoles(userId, ['corredor','pateador','golpeador'], 'real-madrid.com')
-    Roles.addUsersToRoles(userId,'estudiante')
+    Roles.addUsersToRoles(userId,'admin')
 }
 
 AccountsTemplates.configure({
     postSignUpHook:postSignUp,
    //forbidClientAccountCreation: true,
 });
-<<<<<<< HEAD
-=======
 
 Meteor.methods({
     crearUsuario : function(email,password,profile,arrayRoles){
@@ -52,9 +45,4 @@ Meteor.methods({
 /*Meteor.publish('usuario',function(){
     var user = Meteor.users.findOne(this.userId)
     return user
-<<<<<<< HEAD
-})
->>>>>>> marianela
-=======
 })*/
->>>>>>> marianela

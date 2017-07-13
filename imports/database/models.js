@@ -1,13 +1,4 @@
 import { Mongo } from 'meteor/mongo';
-<<<<<<< HEAD
-export const crs = new Mongo.Collection('cursos');
-<<<<<<< HEAD
-export const ars = new Mongo.Collection('archivos');
-=======
-export const ars = new Mongo.Collection('archivos');
-export const msg = new Mongo.Collection('messages')
->>>>>>> marianela
-=======
 import { Index, MinimongoEngine } from 'meteor/easy:search'
 export const crsMaster = new Mongo.Collection('cursos');
 export const crs = new Mongo.Collection('clases');//Materiales
@@ -62,4 +53,3 @@ UserIndex = new EasySearch.Index({
 });
 
 //console.log(JokesIndex)
->>>>>>> marianela

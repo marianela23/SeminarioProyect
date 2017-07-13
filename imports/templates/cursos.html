@@ -106,103 +106,6 @@
                               </div>
                            </div>
 
-<<<<<<< HEAD
-<template name="ver_curso">
-	<div class="card">
-	                    <div class="card-header" data-background-color="purple">
-							{{#with Vercurso}}
-	                        <h4 class="title crear">{{nombre}}</h4>
-	                        <p class="category">
-								{{sigla}}
-								<!--<a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a>-->
-							</p>
-							{{/with}}
-							<form class="navbar-form navbar-right" role="search">
-                        <div class="form-group is-empty">
-                           <input type="text" class="form-control" placeholder="Escribe tu Pregunta">
-                           <span class="material-input"></span>
-                        <span class="material-input"></span></div>
-                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                           <i class="material-icons">search</i>
-                           <div class="ripple-container"></div>
-                        </button>
-                     </form>
-	                    </div>
-	                    <div class="card-content">
-	                        <div class="places-buttons">
-	                            <div class="row">
-	                                <div class="col-md-6">
-	                                    <h5>Ordenar Por:
-	                                        <p class="category">Seleccione el modo de ordenamiento</p>
-	                                    </h5>
-	                                </div>
-	                            </div>
-	                            <div class="row">
-									<div class="col-md-12">
-										<div class="col-md-2">
-		                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','left')">Prioridad</button>
-		                                </div>
-		                                <div class="col-md-2">
-		                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','center')">Nuevos</button>
-		                                </div>
-		                                <div class="col-md-2">
-		                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','right')">Mejores</button>
-		                                </div>
-										<div class="col-md-2">
-		                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','right')">No Resueltos</button>
-		                                </div>
-<<<<<<< HEAD
-
-										<div class="col-md-2">
-		                                    <button class="btn btn-warning btn-block" data-toggle="modal" data-target="#myModal">Agregar Material</button>
-		                                </div>
-									</div>
-	                            </div>
-=======
-										{{#if isInRole 'admin,facilitador'}}
-										<div class="col-md-2">
-		                                    <button class="btn btn-warning btn-block" data-toggle="modal" data-target="#myModal">Agregar Material</button>
-		                                </div>
-										{{/if}}
-									</div>
-	                            </div>
-								<div class="row">
-										<div class="col-md-12">
-											<div class="row">
-												<div class="col-md-6">
-													<h2>Materiales Del curso</h2>
-												</div>
-											</div>
-											<div class="row">
-											{{#each VerMaterialCurso}} 
-											        	<div class="col-md-3">
-															<div class="card">
-																<div class="card-header card-chart" data-background-color="green">
-																	<img src="data:image/jpeg;base64,{{this}}">
-																</div>
-																<div class="card-content">
-																	<h4 class="title">material1</h4>
-																	<p class="category">s</p>
-																</div>
-																<div class="card-footer">
-																	<center>
-																		<a href="/ver-material/{{sigla}}" class="btn btn-primary">Descargar</a>
-																	</center>
-																</div>
-															</div>
-														</div>
-											{{/each}}
-											</div>
-										</div>
-								</div>
->>>>>>> marianela
-	                        </div>
-	                    </div>
-	                </div>
-
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-=======
                            <div class="card-content">
                               <div class="tab-content">
                                  <div class="tab-pane active" id="profile">
@@ -293,7 +196,6 @@
                   </form>
                </div>
             </div>
->>>>>>> marianela
 
             <!--<div class="fileupload fileupload-new" data-provides="fileupload">
                <span class="btn btn-file">
@@ -403,26 +305,6 @@
    </div>
 </template>
 
-<<<<<<< HEAD
-										<div class="row">
-	                                        <div class="col-md-12">
-												<div class="">
-													<label class="control-label">Subir Material</label>
-<<<<<<< HEAD
-													<input name="archivosMaterial" class="form-control archivos" type="file" multiple/>
-													{{#with Vercurso}}
-													<input type="text" name="sigla" value="{{sigla}}"/>
-=======
-													<input name="archivosMaterial" class="form-control archivos" type="file" accept="pdf,jpg,png"/>
-													{{#with Vercurso}}
-													<input type="hidden" name="sigla" value="{{sigla}}"/>
->>>>>>> marianela
-													{{/with}}
-												<span class="material-input"></span></div>
-	                                        </div>
-	                                    </div>
-=======
->>>>>>> marianela
 
 <template name="ver_cursoMaster">
    <div class="card">
@@ -476,12 +358,6 @@
             {{/each}}
         </div>
 
-<<<<<<< HEAD
-  </div>
-</div>
-<<<<<<< HEAD
-=======
-=======
 
          </div>
       </div>
@@ -549,14 +425,9 @@
          </div>
       </div>
    </div>
->>>>>>> marianela
 </template>
 
 
-<<<<<<< HEAD
-	  </div>
->>>>>>> marianela
-=======
 <template name="cursosMateriales">
    <div class="row">
       {{#each FullcursosUser}}
@@ -607,5 +478,4 @@
       </div>
       {{/each}}
    </div>
->>>>>>> marianela
 </template>

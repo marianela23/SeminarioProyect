@@ -5,18 +5,7 @@ import '../../imports/templates/main_home.html';
 //var myLogoutFunc = function(){
 //    FlowRouter.go('/main')
 //}
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-Template.main_principal.helpers({
-  firstName: function() {
-    return Meteor.user().profile.firstName;
-=======
-Meteor.subscribe('usuario')
-
-=======
 //Meteor.subscribe('usuario')
->>>>>>> marianela
 /*Template.main_principal.helpers({
 
     username: function() {
@@ -28,12 +17,6 @@ Meteor.subscribe('usuario')
     }
 });*/
 Template.user.helpers({
-<<<<<<< HEAD
-  firstName: function() {
-    return Meteor.user().profile.Username;
->>>>>>> marianela
-  }
-=======
     firstName: function() {
         var usernormal = Meteor.user().profile.Username;
         if (usernormal == undefined) {
@@ -41,7 +24,6 @@ Template.user.helpers({
         }
         return usernormal
     }
->>>>>>> marianela
 });
 
 Template.main_principal.events({
@@ -69,32 +51,8 @@ AccountsTemplates.configure({
     //   onLogoutHook:myLogoutFunc,
 });
 
-<<<<<<< HEAD
-=======
 
 
-<<<<<<< HEAD
->>>>>>> marianela
-AccountsTemplates.addFields([
-    {
-    _id:'Carrera',
-    type:'text',
-    displayName:'Carrera',
-    required: true,
-    },{
-<<<<<<< HEAD
-=======
-    _id:'Username',
-    type:'text',
-    displayName:'username',
-    required: true,
-    },{
->>>>>>> marianela
-    _id:'Apellidos',
-    type:'text',
-    displayName:'apellidos',
-    required: true,
-=======
 AccountsTemplates.addFields([{
         _id: 'ApellidoP',
         type: 'text',
@@ -122,7 +80,6 @@ AccountsTemplates.addFields([{
         type: 'text',
         displayName: 'Carrera',
         required: true,
->>>>>>> marianela
     },
     {
         _id: 'Celular',
@@ -155,17 +112,9 @@ AccountsTemplates.addFields([{
                 value:'estudiante',
             },
         ]
-<<<<<<< HEAD
-    }
-<<<<<<< HEAD
-]);
-=======
-=======
     }*/
->>>>>>> marianela
 ]);
 
 /*Accounts.ui.config({
     passwordSignupFields:'USERNAME_AND_EMAIL'
 })*/
->>>>>>> marianela

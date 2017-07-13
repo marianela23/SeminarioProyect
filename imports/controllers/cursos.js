@@ -8,10 +8,7 @@ import {msgClases} from '../../imports/database/models.js';
 import '../templates/cursos.html';
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> marianela
 if (Meteor.isClient) {
     Meteor.subscribe('files')
     Meteor.subscribe('archivos')
@@ -61,14 +58,7 @@ if (Meteor.isClient) {
                 sigla: appId,
                 iduser:iduser
             });
-<<<<<<< HEAD
-<<<<<<< HEAD
-            console.log(curso)
-=======
->>>>>>> marianela
-=======
             //console.log(curso)
->>>>>>> marianela
             return curso;
         }
     });
@@ -258,31 +248,13 @@ if (Meteor.isClient) {
             
             }
 
-<<<<<<< HEAD
-            console.log("entro")
-            console.log(nombre)
-            console.log(archivos[0])
-            console.log(archivos.length )
-
-            if (!archivos) return;
-            for(var i=0; i<archivos.length  ;i++){
-                file = archivos[i]
-<<<<<<< HEAD
-                var reader = new FileReader(); //create a reader according to HTML5 File API
-                reader.onload = function(event){          
-                var buffer = new Uint8Array(reader.result) // convert to binary
-                
-=======
-=======
             /*if (!video) return;
             for(var i=0; i<video.length  ;i++){
                 file = video[i]
->>>>>>> marianela
                 console.log(file)
                 var reader = new FileReader(); //create a reader according to HTML5 File API
                 reader.onload = function(event){  
                 var buffer = new Uint8Array(reader.result) // convert to binary
->>>>>>> marianela
                 Meteor.call('saveFile', buffer,nombre,descripcion,sigla);
                 }
                 reader.readAsArrayBuffer(file); //read the file as arraybuffer
@@ -333,15 +305,8 @@ if (Meteor.isClient) {
         }*/
 
     })
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-    Template.ver_curso.onCreated(function () {
-=======
     //Template.ver_curso.onCreated(function () {
     Template.ver_cursoMaster.onCreated(function () {
->>>>>>> marianela
         var appId = FlowRouter.getParam("sigla");
         Meteor.call("GetDecodeArchivos",appId, function(err, res) {
                 if (err) {
@@ -397,5 +362,4 @@ if (Meteor.isClient) {
             console.log("archivoCurso")
         }
     })
->>>>>>> marianela
 }

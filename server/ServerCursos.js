@@ -37,17 +37,6 @@ Meteor.methods({
         ]
         return crs.aggregate(res);
   },
-<<<<<<< HEAD
-  /*file_upload: function (fileInfo, fileData) {
-      console.log("received file " + fileInfo.name + " data: " + fileData);
-        FS.Utility.eachFile(event, function(fileData) {
-            ars.insert(file, function (err, fileObj) {
-                
-            });
-        });   
-  }  */
-=======
->>>>>>> marianela
     saveFile: function(buffer,nombre,descripcion,CursoSigla){
         ars.insert({
             siglaMaterial:CursoSigla,
@@ -73,9 +62,6 @@ Meteor.methods({
                 console.log( "Update Successful");
             }
         });
-<<<<<<< HEAD
-    }  
-=======
     },
 
     materialesCurso: function(sigla){
@@ -241,7 +227,6 @@ Meteor.methods({
       console.log("received file " + fileInfo.name + " data: " + fileData);
       FS.writeFile(fileInfo.name, fileData);
     }
->>>>>>> marianela
 });
 
 
@@ -256,13 +241,7 @@ fls.allow({
 
 Meteor.publish('crs', function() {
   return crs.find();
-<<<<<<< HEAD
 });
-<<<<<<< HEAD
-=======
-});
->>>>>>> marianela
-=======
 
 Meteor.publish('files', function() {
   return fls.find();
@@ -277,4 +256,3 @@ Meteor.publish('cursosMaster', function() {
   return crsMaster.find();
 });
 
->>>>>>> marianela

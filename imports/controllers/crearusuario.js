@@ -141,9 +141,69 @@ Template.perfil_usuario.onCreated(function () {
         });
 });
 
+Template.editar_perfil.onCreated(function () {
+        var appId = Meteor.userId();
+        Meteor.call("existeUsuario",appId, function(err, res) {
+                if (err) {
+                    console.log('Error: ' + err);
+                }
+                if (!err) {
+                    Session.set('editarperfil', res);
+                }
+        });
+});
+
 Template.perfil_usuario.helpers({
-    firstName: function() {
-        console.log(Session.get('infouser'));
+    usuario: function() {
         return Session.get('infouser')
+    }
+})
+
+
+Template.editar_perfil.helpers({
+    edituser: function() {
+        return Session.get('editarperfil')
+    }
+})
+
+Template.editar_perfil.events({
+        'submit form': function(event,template) {
+        event.preventDefault();
+        var appId = Meteor.userId();
+        const target = event.target;
+
+        const carrera = target.carrera.value;
+        
+        const apellidoP = target.apellidoP.value;
+        const apellidoM = target.apellidoM.value;
+        const nombres = target.nombres.value;
+        const cel = target.cel.value;
+        const direccion = target.direccion.value;
+
+        
+        const email = target.email.value;
+
+        //const roles = template.findAll( "input[type=checkbox]:checked");
+        const estado = 'activo';
+
+        //var arrayRoles = _.map(roles, function(item) {
+        //    return item.defaultValue;
+        //});
+
+        var profile = {
+            Carrera :carrera,
+            ApellidoP:apellidoP,
+            ApellidoM:apellidoM,
+            Nombres:nombres,
+            Celular:cel,
+            Direccion:direccion,
+            estado:estado
+        }
+
+        Meteor.call('editarUsuario',appId,profile)
+
+        //template.find("form").reset();
+        event.preventDefault();
+        return false;
     }
 })

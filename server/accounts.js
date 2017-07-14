@@ -38,6 +38,10 @@ Meteor.methods({
     existeUsuario : function(id){
         //return !!Meteor.users.findOne({_id: id});// return true or false
          return Meteor.users.findOne({_id: id});
+    },
+    editarUsuario : function(appId,profile){
+        Meteor.users.update(appId, {$set: {profile: profile}});
+        //console.log("editado")
     }
 })
 

@@ -65,7 +65,15 @@ Meteor.methods({
             description:des,
         })
         console.log("creado")
-    }
+    },
+    EditarUsuarioPs : function(appId,email,password,profile,arrayRoles){
+        console.log("ss")
+    },
+    EditarUsuario : function(appId,email,profile,arrayRoles){
+    
+        Meteor.users.update(appId, {$set: {profile: profile,email:email,roles:arrayRoles}});
+        console.log("creado correctamente")
+    },
 })
 
 

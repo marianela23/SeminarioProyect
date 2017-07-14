@@ -114,7 +114,7 @@ Template.User.events({
         Session.set("selectedUsuario",this.__originalId);
     },
     'click .editUser' : function(){
-        console.log("entro");
+        //console.log("entro");
         //var id = toString(this.__originalId)
        // console.log(this.__originalId)
         //console.log(Meteor.users.find({_id:id}).fetch())
@@ -127,7 +127,7 @@ Template.User.events({
         if (!err) {
             Session.set('usuario', res);
         }
-        console.log(Session.get('usuario'))
+        //console.log(Session.get('usuario'))
         FlowRouter.subsReady("chat", function() {
          console.log("entra aqui")
         });
@@ -252,3 +252,86 @@ Template.editar_perfil.events({
         return false;
     }
 })
+
+Template.editar_usuario.onCreated(function () {
+    var appId = FlowRouter.getParam("_id");
+    console.log(appId)
+    Meteor.call("existeUsuario",appId, function(err, res) {
+            if (err) {
+                console.log('Error: ' + err);
+            }
+            if (!err) {
+                console.log(res)
+                Session.set('edituser', res);
+            }
+    });
+});
+
+Template.editar_usuario.helpers({
+        userEdit: () => {
+            return Session.get('edituser');
+        },
+        rolesUser: () => {
+            var r = Meteor.roles.find().fetch()
+            return r
+        },
+        isChecked: function (type) {
+            var userchek = Session.get('edituser');
+            var rol = userchek.roles
+
+            if(jQuery.inArray(type, rol) !== -1){
+                return 'checked'
+            }else{
+                return null
+            }
+        }
+})
+
+Template.editar_usuario.events({
+    
+    'submit form': function(event,template) {
+        var appId = FlowRouter.getParam("_id");
+        event.preventDefault();
+
+        const target = event.target;
+
+        const carrera = target.carrera.value;
+        const username = target.username.value;
+        const apellidoP = target.apellidoP.value;
+        const apellidoM = target.apellidoM.value;
+        const nombres = target.nombres.value;
+        const cel = target.cel.value;
+        const direccion = target.direccion.value;
+
+        const password = target.password.value;
+        const email = target.email.value;
+
+        const roles = template.findAll( "input[type=checkbox]:checked");
+        const estado = 'activo';
+
+        var arrayRoles = _.map(roles, function(item) {
+            return item.defaultValue;
+        });
+
+        var profile = {
+            Carrera :carrera,
+            Username:username,
+            ApellidoP:apellidoP,
+            ApellidoM:apellidoM,
+            Nombres:nombres,
+            Celular:cel,
+            Direccion:direccion,
+            estado:estado
+        }
+        if(password === ''){
+            Meteor.call('EditarUsuario',appId ,email,profile,arrayRoles)
+            console.log("1")
+        }else{
+            Meteor.call('EditarUsuario',appId ,email,password,profile,arrayRoles)
+            console.log("2")
+        }
+        //template.find("form").reset();
+        event.preventDefault();
+        return false;
+    }
+});

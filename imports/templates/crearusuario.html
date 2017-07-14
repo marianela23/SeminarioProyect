@@ -89,7 +89,7 @@
                               <td>
                                  <div class="checkbox">
                                     <label>
-                                    <input type="checkbox" class="checksbox" name="rol[]" value="admin"><span class="checkbox-material"><span class="check"></span></span>
+                                    <input type="checkbox" class="checksbox" name="rol[]" value="{{name}}"><span class="checkbox-material"><span class="check"></span></span>
                                     </label>
                                  </div>
                               </td>
@@ -228,10 +228,10 @@
          </div>
       </td>
 	  <td>
-		  <button class="btn btn-warning editUser" > Editar </button>
+		  <a href="/editar-usuario/{{__originalId}}" class="btn btn-warning editUser" > Editar </a>
 	  </td>
 	  <td>
-		  <button class="btn btn-danger banUser">  Bannear </button>
+		  <a class="btn btn-danger banUser">  Bannear </a>
 	  </td>
       {{/if}}
    </tr>
@@ -476,6 +476,128 @@
                      </div>
                   </div>
                   <button type="submit" class="btn btn-primary pull-right">Editar mi Perfil</button>
+                  <div class="clearfix"></div>
+               </form>
+               <!--{{>atForm state='signUp'}}-->
+            </div>
+         </div>
+      </div>
+   </div>
+   {{/with}}
+</template>
+
+<template name="editar_usuario">
+    {{#with userEdit}}
+   <div class="row">
+      <div class="col-md-12">
+         <div class="card">
+            <div class="card-header" data-background-color="purple">
+               <h4 class="title ">Crear Un nuevo Usuario</h4>
+               <p class="category">Tenga cuidado con los campos de un nuevo usuario</p>
+            </div>
+            <div class="card-content">
+               <form>
+                  <div class="row">
+                     <div class="col-md-5">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Nombres Completos</label>
+                           <input type="text" name="nombres" id="nombres" class="form-control" value = "{{profile.Nombres}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Apellido Paterno</label>
+                           <input type="text" name="apellidoP" id="apellidoP" class="form-control" value = "{{profile.ApellidoP}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Apellido Materno</label>
+                           <input type="text" name="apellidoM" id="apellidoM" class="form-control" value = "{{profile.ApellidoM}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Correo Electronico</label>
+                           <input type="email" name="email"  id="email" class="form-control" value="{{emails.[0].address}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Numero de telefono</label>
+                           <input type="text" name="cel" id="cel" class="form-control" value="{{profile.Celular}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Direccion</label>
+                           <input type="text" name="direccion" id="direccion" class="form-control" value="{{profile.Direccion}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Password</label>
+                           <input type="password" name="password" id="password" class="form-control">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">username</label>
+                           <input type="text" name="username" id="username" class="form-control" value="{{profile.Username}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Carrera</label>
+                           <input type="text" name="carrera" id="carrera" class="form-control" value="{{profile.Carrera}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-4">
+                        <label class="control-label" style="font-size:15px">Roles de Usuario</label>
+                        
+                        <table>
+                            {{#each rolesUser}}
+                           <tr>
+                              <td>
+                                 <div class="checkbox">
+                                    <label>
+                                    <input type="checkbox" class="checksbox" name="rol[]" value="{{name}}" {{isChecked name}}><span class="checkbox-material"><span class="check"></span></span>
+                                    </label>
+                                 </div>
+                              </td>
+                              <td>{{name}}</td>
+                           </tr>
+                           {{/each}}
+                        </table>
+                        <!--<div class="form-group label-floating is-empty">
+                           <label class="control-label"></label>
+                           <select name="rol" class="form-control">
+                                                                      <option value="admin">Administrador</option>
+                                                                      <option value="facilitador">Facilitador</option>
+                                                                      <option value="estudiante">Estudiante</option>
+                           </select>
+                           <span class="material-input"></span>
+                           </div>-->
+                     </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary pull-right">Editar Usuario</button>
                   <div class="clearfix"></div>
                </form>
                <!--{{>atForm state='signUp'}}-->

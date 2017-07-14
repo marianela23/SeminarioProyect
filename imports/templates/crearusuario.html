@@ -269,3 +269,236 @@
         {{/if}}
     {{/if}}
 </template>
+
+<template name = "perfil_usuario">
+    {{#with usuario}}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-profile">
+                <div class="card-avatar">
+                    <a href="#pablo">
+                        <img class="img" src="/images/perfil.jpg">
+                    </a>
+                </div>
+                <div class="content">
+                    <h6 class="category text-gray">CEO / Co-Founder</h6>
+                    <h4 class="card-title">{{profile.Username}}</h4>
+                    <p class="card-content">
+                        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                    </p>
+                    <a href="/editar-perfil" class="btn btn-primary btn-round">Editar Mi perfil</a>
+
+                    <a href="#" class="btn btn-primary btn-round" data-toggle="modal" data-target="#myModalpassword">Cambiar mi password</a>
+                </div>
+               
+            </div>
+        </div>
+      <div class="col-md-8">
+         <div class="card">
+            <div class="card-header" data-background-color="purple">
+               <h4 class="title ">Informacion de Usuario</h4>
+               <p class="category">su informacion es muy importante para nosotros</p>
+            </div>
+            <div class="card-content">
+               <form>
+                  <div class="row">
+                     <div class="col-md-5">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Nombres Completos</label>
+                           <input type="text" name="nombres" id="nombres" class="form-control"  value = "{{profile.Nombres}}" disabled>
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Apellido Paterno</label>
+                           <input type="text" name="apellidoP" id="apellidoP" class="form-control"   value = "{{profile.ApellidoP}}" disabled>
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Apellido Materno</label>
+                           <input type="text" name="apellidoM" id="apellidoM" class="form-control"   value = "{{profile.ApellidoM}}" disabled>
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Correo Electronico</label>
+                           <input type="email" name="email" id="email" class="form-control" value = "{{emails.[0].address}}" disabled>
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Numero de telefono</label>
+                           <input type="text" name="cel" id="cel" class="form-control"   value = "{{profile.Celular}}" disabled>
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Direccion</label>
+                           <input type="text" name="direccion" id="direccion" class="form-control"   value = "{{profile.Direccion}}" disabled>
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Carrera</label>
+                           <input type="text" name="carrera" id="carrera" class="form-control" value = "{{profile.Carrera}}" disabled>
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="clearfix"></div>
+               </form>
+               <!--{{>atForm state='signUp'}}-->
+            </div>
+         </div>
+      </div>
+   </div>
+   
+    {{/with}}
+
+     <div id="myModalpassword" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Cambiar mi clave</h4>
+            </div>
+            <div class="modal-body">
+               <div class="card-content">
+                  <form method="POST" id="editPassword"> 
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group label-floating is-empty">
+                              <label class="control-label">Contraseña actual</label>
+                              <input type="password" name="passant" class="form-control">
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group label-floating is-empty">
+                              <label class="control-label">Nueva Contraseña</label>
+                              <input type="password" name="passnew" class="form-control">
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group label-floating is-empty">
+                              <label class="control-label">Confirme Nueva Contraseña</label>
+                              <input type="password" name="passnewconf" class="form-control">
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <button type="submit" class="btn btn-primary pull-right">Cambiar mi clave </button>
+                     <div class="clearfix"></div>
+                  </form>
+               </div>
+            </div>
+
+            <!--<div class="fileupload fileupload-new" data-provides="fileupload">
+               <span class="btn btn-file">
+               <span class="fileupload-new">SSSS</span>
+               <span class="fileupload-exists">Andere</span>
+               <input name="xxx" class="file-upload-input" type="file"/>
+               </span>
+               <span class="fileupload-preview">
+               </span>
+               <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+            </div>-->
+         </div>
+      </div>
+   </div>
+</template>
+
+<template name="editar_perfil">
+     {{#with edituser}}
+   <div class="row">
+      <div class="col-md-12">
+         <div class="card">
+            <div class="card-header" data-background-color="purple">
+               <h4 class="title ">Editar Mi Perfil</h4>
+               <p class="category">Tenga cuidado con los campos editando</p>
+            </div>
+            <div class="card-content">
+               <form>
+                  <div class="row">
+                     <div class="col-md-5">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Nombres Completos</label>
+                           <input type="text" name="nombres" id="nombres" class="form-control" value = "{{profile.Nombres}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Apellido Paterno</label>
+                           <input type="text" name="apellidoP" id="apellidoP" class="form-control" value = "{{profile.ApellidoP}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Apellido Materno</label>
+                           <input type="text" name="apellidoM" id="apellidoM" class="form-control" value = "{{profile.ApellidoM}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Correo Electronico</label>
+                           <input type="email" name="email"  id="email" class="form-control" value = "{{emails.[0].address}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Numero de telefono</label>
+                           <input type="text" name="cel" id="cel" class="form-control" value="{{profile.Celular}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Direccion</label>
+                           <input type="text" name="direccion" id="direccion" class="form-control" value="{{profile.Direccion}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     
+                     <div class="col-md-6">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Carrera</label>
+                           <input type="text" name="carrera" id="carrera" class="form-control" value="{{profile.Carrera}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary pull-right">Editar mi Perfil</button>
+                  <div class="clearfix"></div>
+               </form>
+               <!--{{>atForm state='signUp'}}-->
+            </div>
+         </div>
+      </div>
+   </div>
+   {{/with}}
+</template>

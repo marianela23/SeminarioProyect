@@ -288,7 +288,7 @@
                     </p>
                     <a href="/editar-perfil" class="btn btn-primary btn-round">Editar Mi perfil</a>
 
-                    <a href="#" class="btn btn-primary btn-round">Cambiar mi password</a>
+                    <a href="#" class="btn btn-primary btn-round" data-toggle="modal" data-target="#myModalpassword">Cambiar mi password</a>
                 </div>
                
             </div>
@@ -363,7 +363,66 @@
          </div>
       </div>
    </div>
+   
     {{/with}}
+
+     <div id="myModalpassword" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Cambiar mi clave</h4>
+            </div>
+            <div class="modal-body">
+               <div class="card-content">
+                  <form method="POST" id="editPassword"> 
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group label-floating is-empty">
+                              <label class="control-label">Contraseña actual</label>
+                              <input type="password" name="passant" class="form-control">
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group label-floating is-empty">
+                              <label class="control-label">Nueva Contraseña</label>
+                              <input type="password" name="passnew" class="form-control">
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group label-floating is-empty">
+                              <label class="control-label">Confirme Nueva Contraseña</label>
+                              <input type="password" name="passnewconf" class="form-control">
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <button type="submit" class="btn btn-primary pull-right">Cambiar mi clave </button>
+                     <div class="clearfix"></div>
+                  </form>
+               </div>
+            </div>
+
+            <!--<div class="fileupload fileupload-new" data-provides="fileupload">
+               <span class="btn btn-file">
+               <span class="fileupload-new">SSSS</span>
+               <span class="fileupload-exists">Andere</span>
+               <input name="xxx" class="file-upload-input" type="file"/>
+               </span>
+               <span class="fileupload-preview">
+               </span>
+               <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+            </div>-->
+         </div>
+      </div>
+   </div>
 </template>
 
 <template name="editar_perfil">

@@ -6,6 +6,7 @@ export const ars = new Mongo.Collection('archivos');
 export const msg = new Mongo.Collection('messages')
 export const msgClases = new Mongo.Collection('msgClases')
 export const preg = new Mongo.Collection('preguntas')
+export const resp = new Mongo.Collection('respuestas')
 /*export const fls = new FS.Collection("files", {
                 stores: [new FS.Store.FileSystem("files", {path: "public/images  "})]
             });*/

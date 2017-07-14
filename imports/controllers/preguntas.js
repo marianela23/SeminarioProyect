@@ -1,7 +1,12 @@
 import { Template } from 'meteor/templating';
 import '../../imports/templates/preguntas.html';
 import { preg } from '../database/models.js';
-if (Meteor.isClient) { 
+import { resp } from '../database/models.js';
+if (Meteor.isClient) {
+
+    Meteor.subscribe('preguntas')
+    Meteor.subscribe('respuestas')
+
 Template.preguntas.events({
   'submit #crearPregunta'(event) {
       event.preventDefault();
@@ -73,7 +78,7 @@ Template.preg.helpers({
     }
 })
 
-Template.preg.events({
+/*Template.preg.events({
     'click .usuario':function(e){
         id = "#"+$(e.currentTarget).attr("axis");
         if($(id).hasClass("out")) {
@@ -106,5 +111,50 @@ Template.preg.events({
 
     });
     }
-})
+})*/
+    Template.respuestas_pregunta.helpers({
+        Verpregunta: () => {
+            var appId = FlowRouter.getParam("_id");
+            var pregunta = preg.findOne({
+                _id: appId,
+            });
+            return pregunta
+        },
+        VerRespuestas: () => {
+            var appId = FlowRouter.getParam("_id");
+            var respuesta = resp.find({
+                idPreg: appId,
+            }).fetch();
+            console.log(respuesta)
+            return respuesta
+        }
+    })
+
+    Template.respuestas_pregunta.events({
+        'submit #repsPregunta'(event) {
+            event.preventDefault();
+            // Get value from form element
+            const target = event.target;
+            const resps = target.resp.value;
+            const idpreg = target.rca.value;
+            var usernormal = Meteor.user().profile.Username;
+            if (usernormal == undefined) {
+                usernormal = Meteor.user().profile.name;
+            }
+            console.log(usernormal)
+            // Insert a task into the collection
+            resp.insert({
+                respuesta:resps,
+                username:usernormal,
+                idPreg:idpreg,
+                createdAt: new Date(), // current time
+            });
+        
+            // Clear form
+            target.resp.value = '';
+            console.log("registro correcto")
+            event.preventDefault();
+            return false;
+        },
+    });
 }

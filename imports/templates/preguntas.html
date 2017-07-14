@@ -97,9 +97,9 @@
       <td class="usuario" axis ="collapseme-{{@index}}"><span>{{pregunta}}</span></td>
       <td class="usuario" axis ="collapseme-{{@index}}"><span>{{username}}</span></td>
       <td class="usuario" axis ="collapseme-{{@index}}"><span>{{createdAt}}</span></td>
-      <td class="usuario" axis ="collapseme-{{@index}}"><span><a class="btn btn-danger">Responder a la Pregunta</a></span></td>
+      <td class="usuario" axis ="collapseme-{{@index}}"><span><a href="/responder-pregunta/{{__originalId}}" class="btn btn-danger">Responder a la Pregunta</a></span></td>
    </tr>
-   <tr id="collapseme-{{@index}}" class="collapse out">
+ <!--  <tr id="collapseme-{{@index}}" class="collapse out"> 
       {{#if selected}}
       <td colspan="2">
          <div>
@@ -107,11 +107,85 @@
          </div>
       </td>
 	  <td>
-		  <a href="/editar-usuario/{{__originalId}}" class="btn btn-warning editUser" > Editar </a>
+		  <a href="/responder-pregunta/{{__originalId}}" class="btn btn-warning editUser" > Editar </a>
 	  </td>
 	  <td>
 		  <a class="btn btn-danger banUser">  Bannear </a>
 	  </td>
       {{/if}}
-   </tr>
+   </tr>-->
+</template>
+
+<template name="respuestas_pregunta">
+   <div class="row">
+      <div class="col-md-12">
+         <div class="card">
+            <div class="card-header" data-background-color="white" style="background-color: #ffffff;">
+               <div class="container-fluid">
+                  <div class="navbar-header">
+                      {{#with Verpregunta}}
+                     <a class="navbar-brand" style="color: #000;" href="#">
+                        Respuestas de la pregunta: <b>{{pregunta}}</b>
+                        <div class="ripple-container"></div>
+                     </a>
+                     {{/with}}
+                  </div>
+                  <div class="collapse navbar-collapse">
+                    
+                  </div>
+               </div>
+            </div>
+            <div class="card-content table-responsive">
+               <table class="table">
+                  <thead class="text-primary">
+                     <tr>
+                        <th>Respuesta</th>
+                        <th>usuario</th>
+                        <th>Fecha Creada</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      {{#each VerRespuestas}}
+                     <tr>
+                        <td class="usuario" axis="collapseme-0"><span>{{respuesta}}</span></td>
+                        <td class="usuario" axis="collapseme-0"><span>{{username}}</span></td>
+                        <td class="usuario" axis="collapseme-0"><span>{{createdAt}}</span></td>
+                        
+                     </tr>
+                     {{/each}}
+                     <tr>
+                        <td colspan="3">
+                        <form id="repsPregunta">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group label-floating is-empty">
+                                    <label class="control-label">Respuesta</label>
+                                    <input type="text" name="resp" id="resp" class="form-control">
+                                    {{#with Verpregunta}}
+                                    <input type="hidden" name="rca" value="{{_id}}">
+                                    {{/with}}
+                                    <span class="material-input"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group label-floating is-empty">
+                                    <label class="control-label"></label>
+                                    <button type = "submit" class="btn btn-primary"> Enviar respuesta</button>
+                                    <span class="material-input"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3" align="right">
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
 </template>

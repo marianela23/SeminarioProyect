@@ -49,10 +49,15 @@ Template.main_principal.events({
                     console.log("exit")
             }
         });
-        console.log(rol)
+        //console.log(rol)
         
         $('#myModalroles').modal('toggle');
         template.find("#createRol").reset();
+        swal(
+            'Exito!',
+            'Nuevo Rol creado correctamente!',
+            'success'
+        )
         event.preventDefault();
         return false;
     

@@ -47,6 +47,11 @@ Template.CrearUsuarios.events({
         }
          
         Meteor.call('crearUsuario', email,password,profile,arrayRoles)
+        swal(
+            'Exito!',
+            'Usuario creado correctamente!',
+            'success'
+        )
         template.find("form").reset();
         event.preventDefault();
         return false;
@@ -182,17 +187,29 @@ Template.perfil_usuario.events({
             if(passN == passnC){
                   Meteor.call('changePAssword',appId,passN,function(err,result){
                     if(!err){
-                        console.log("Congrats you change the password")
+                        swal(
+                            'Exito!',
+                            'Contraseña cambiada correctamente!',
+                            'success'
+                        )
                     }else{
                         console.log("pup there is an error caused by " + err.reason)
                     }
                 })
             }else{
-                alert("la nueva contraseña no coincide")
+                swal(
+                    'Error!',
+                    'Su nueva contraseña no coincide!',
+                    'error'
+                )
             }
         }
         else{
-            alert("la contraseña no es la actual")
+             swal(
+                    'Error!',
+                    'Su contraseña actual no coincide!',
+                    'error'
+                )
         }
         });
         console.log(passA)
@@ -246,7 +263,11 @@ Template.editar_perfil.events({
         }
 
         Meteor.call('editarUsuario',appId,profile)
-
+        swal(
+            'Exito!',
+            'Usuario editado correctamente!',
+            'success'
+        )
         //template.find("form").reset();
         event.preventDefault();
         return false;
@@ -327,9 +348,19 @@ Template.editar_usuario.events({
         if(password === ''){
             Meteor.call('EditarUsuario',appId ,email,profile,arrayRoles)
             //console.log("1")
+            swal(
+                'Exito!',
+                'Usuario Editado correctamente!',
+                'success'
+            )
         }else{
            Meteor.call('EditarUsuarioPs',appId ,email,password,profile,arrayRoles)
             //console.log("2")
+            swal(
+                'Exito!',
+                'Usuario Editado correctamente!',
+                'success'
+            )
         }
         //template.find("form").reset();
         event.preventDefault();

@@ -30,7 +30,7 @@ Template.crearCursos.events({//crear Clases dentro del curso
     target.nombrecurso.value = '';
     target.sigla.value='';
     target.descripcion.value='';
-    
+
     event.preventDefault();
     return false;
   },
@@ -61,6 +61,11 @@ Template.crearCursosMaster.events({
     target.sigla.value='';
     target.descripcion.value='';
     console.log("registro correcto")
+    swal(
+        'Exito!',
+        'Curso creado correctamente!',
+        'success'
+    )
     event.preventDefault();
     return false;
   },

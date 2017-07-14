@@ -42,7 +42,7 @@ Template.preguntas.helpers({
     //////////////
     inputAttributes: function(){
         //console.log('atributes')
-        return {'class':'form-control','placeholder':'Buscar usuario'}  
+        return {'class':'form-control','placeholder':'Buscar Pregunta'}  
     },
     /*players: function(){
         console.log('players')

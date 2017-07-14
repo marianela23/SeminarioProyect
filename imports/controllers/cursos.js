@@ -261,6 +261,11 @@ if (Meteor.isClient) {
             }*/
             console.log("guardado")
             $('#myModal').modal('toggle');
+            swal(
+                'Exito!',
+                'Clase creada correctamente!',
+                'success'
+            )
             template.find("form").reset();  
             event.preventDefault();
             event.stopPropagation();
@@ -392,10 +397,12 @@ if (Meteor.isClient) {
                 }
             });
             // Clear form
-            target.nombrecurso.value = '';
-            
-            target.descripcion.value='';
             console.log("registro correcto")
+            swal(
+                'Exito!',
+                'Curso editado correctamente!',
+                'success'
+            )
             event.preventDefault();
             return false;
         },

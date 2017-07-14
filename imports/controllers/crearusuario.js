@@ -128,3 +128,22 @@ Template.User.events({
     });
     }
 })
+
+Template.perfil_usuario.onCreated(function () {
+        var appId = Meteor.userId();
+        Meteor.call("existeUsuario",appId, function(err, res) {
+                if (err) {
+                    console.log('Error: ' + err);
+                }
+                if (!err) {
+                    Session.set('infouser', res);
+                }
+        });
+});
+
+Template.perfil_usuario.helpers({
+    firstName: function() {
+        console.log(Session.get('infouser'));
+        return Session.get('infouser')
+    }
+})

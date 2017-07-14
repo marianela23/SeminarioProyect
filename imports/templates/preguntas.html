@@ -1,0 +1,117 @@
+<template name="preguntas">
+   <div class="row">
+      <div class="col-md-12">
+         <div class="card">
+            <div class="card-header" data-background-color="white" style="background-color: #ffffff;">
+               <div class="container-fluid">
+                  <div class="navbar-header">
+                     <a class="navbar-brand" style="color: #000;" href="#">
+                        Preguntas y Respuestas
+                        <div class="ripple-container"></div>
+                     </a>
+                  </div>
+                  <div class="collapse navbar-collapse">
+                     <form class="navbar-form navbar-right"  role="crear pregunta"  id="crearPregunta" style="margin:-20px;margin-left: 48px;">
+                        <div class="form-group is-empty">
+                           <input class="form-control" name="createpregunta"  placeholder="Crear Nueva Pregunta" type="text">
+                           <span class="material-input"></span>
+                           <span class="material-input"></span>
+                        </div>
+                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                           <i class="material-icons">assignment_returned</i>
+                           <div class="ripple-container"></div>
+                        </button>
+                     </form>
+                     <form class="navbar-form navbar-right" style="margin:-20px">
+                        <div class="form-group is-empty">
+                           {{> EasySearch.Input index=index attributes = inputAttributes}}
+                           <span class="material-input"></span>
+                           <span class="material-input"></span>
+                        </div>
+                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                           <i class="material-icons">search</i>
+                           <div class="ripple-container"></div>
+                        </button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+            <div class="card-content table-responsive">
+                <table class="table">
+                  <thead class="text-primary">
+                     <tr>
+                        <th>Pregunta</th>
+                        <th>usuario</th>
+                        <th>Fecha Creada</th>
+                        <th> ---- </th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {{#EasySearch.IfSearching index=index}}
+                     <td colspan="4">
+                        Buscando...
+                     </td>
+                     {{/EasySearch.IfSearching}}
+                     {{#EasySearch.IfNoResults index=index}}
+                     <td colspan="4" align="center">
+                        <h3>Ninguna Pregunta Encontrado</h3>
+                     </td>
+                     {{else}}
+                     {{/EasySearch.IfNoResults}}
+                     {{#EasySearch.Each index=index}}
+                     {{> preg}}
+                     {{/EasySearch.Each}}
+					 <tr>
+						<td colspan="4">
+							
+						</td>
+					</tr>
+                     <tr>
+                        {{#EasySearch.IfInputEmpty index=index}}
+                        <td colspan="4" class="alert alert-warning">
+                           Puede realizar busquedas por alguna referencia de la pregunta
+                        </td>
+                        {{else}}
+                        <td colspan="4">
+                           {{resultsCount}} Resultados Encontrados.
+                        </td>
+                        {{/EasySearch.IfInputEmpty}}
+                     </tr>
+                     <tr>
+                        <td colspan="4" align="right">
+                           {{>EasySearch.Pagination index=index maxPages=10}}
+						   	
+                           {{! > EasySearch.LoadMore index=index}}
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</template>
+
+<template name="preg">
+   <tr>
+      <td class="usuario" axis ="collapseme-{{@index}}"><span>{{pregunta}}</span></td>
+      <td class="usuario" axis ="collapseme-{{@index}}"><span>{{username}}</span></td>
+      <td class="usuario" axis ="collapseme-{{@index}}"><span>{{createdAt}}</span></td>
+      <td class="usuario" axis ="collapseme-{{@index}}"><span><a class="btn btn-danger">Responder a la Pregunta</a></span></td>
+   </tr>
+   <tr id="collapseme-{{@index}}" class="collapse out">
+      {{#if selected}}
+      <td colspan="2">
+         <div>
+            <span> El usuario <b>{{emails.[0].address}}</b> en este momento esta: <b>{{profile.estado}}</b> que desea hacer? </span>
+         </div>
+      </td>
+	  <td>
+		  <a href="/editar-usuario/{{__originalId}}" class="btn btn-warning editUser" > Editar </a>
+	  </td>
+	  <td>
+		  <a class="btn btn-danger banUser">  Bannear </a>
+	  </td>
+      {{/if}}
+   </tr>
+</template>

@@ -5,7 +5,7 @@ export const crs = new Mongo.Collection('clases');//Materiales
 export const ars = new Mongo.Collection('archivos');
 export const msg = new Mongo.Collection('messages')
 export const msgClases = new Mongo.Collection('msgClases')
-
+export const preg = new Mongo.Collection('preguntas')
 /*export const fls = new FS.Collection("files", {
                 stores: [new FS.Store.FileSystem("files", {path: "public/images  "})]
             });*/
@@ -53,3 +53,30 @@ UserIndex = new EasySearch.Index({
 });
 
 //console.log(JokesIndex)
+
+
+PreguntasIndex = new EasySearch.Index({
+    engine:new EasySearch.MongoDB({
+        sort:function(){
+            return {createdAt:1}
+        },
+        selector:function(searchObject,options,aggregation){
+            let selector = this.defaultConfiguration().selector(searchObject,options,aggregation),
+            categoryFilter = options.search.props.categoryFilter;
+
+            //if(_isString(categoryFilter) && !_.isEmpty(categoryFilter)){
+                selector.category = categoryFilter;
+            //}
+            return selector
+            
+        }
+    }),
+    collection:preg,
+    fields:['pregunta'],
+    defaultSearchOptions:{
+        limit:8 
+    },
+    permission:()=>{
+        return true
+    }
+});

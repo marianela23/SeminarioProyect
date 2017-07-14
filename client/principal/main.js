@@ -4,4 +4,5 @@ import '../../imports/controllers/login.js';
 import '../../imports/controllers/crear_cursos.js';
 import '../../imports/controllers/cursos.js';
 import '../../imports/controllers/crearusuario.js';
+import '../../imports/controllers/preguntas.js';
 

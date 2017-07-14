@@ -323,12 +323,13 @@ Template.editar_usuario.events({
             Direccion:direccion,
             estado:estado
         }
+        console.log(password)
         if(password === ''){
             Meteor.call('EditarUsuario',appId ,email,profile,arrayRoles)
-            console.log("1")
+            //console.log("1")
         }else{
-            Meteor.call('EditarUsuario',appId ,email,password,profile,arrayRoles)
-            console.log("2")
+           Meteor.call('EditarUsuarioPs',appId ,email,password,profile,arrayRoles)
+            //console.log("2")
         }
         //template.find("form").reset();
         event.preventDefault();

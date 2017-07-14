@@ -24,7 +24,7 @@ Meteor.methods({
             profile: profile,
         });
 
-        console.log(id)
+      //  console.log(id)
 
         if (arrayRoles.length > 0) {
             // Need _id of existing user record so this call must come
@@ -32,7 +32,7 @@ Meteor.methods({
             Roles.addUsersToRoles(id, arrayRoles);
         }
 
-        console.log("creado correctamente")
+       // console.log("creado correctamente")
     },
 
     existeUsuario : function(id){
@@ -57,7 +57,7 @@ Meteor.methods({
     },
     changePAssword:function(userId,newPassword){
         Accounts.setPassword(userId, newPassword)
-        console.log("esc")
+       // console.log("esc")
     },
     createRole:function(rol,des){
         Meteor.roles.insert({
@@ -67,12 +67,14 @@ Meteor.methods({
         console.log("creado")
     },
     EditarUsuarioPs : function(appId,email,password,profile,arrayRoles){
-        console.log("ss")
+        Meteor.users.update(appId, {$set: {profile: profile,email:email,roles:arrayRoles}});
+        Accounts.setPassword(appId, password)
+        //console.log("exito 2") 
     },
     EditarUsuario : function(appId,email,profile,arrayRoles){
     
         Meteor.users.update(appId, {$set: {profile: profile,email:email,roles:arrayRoles}});
-        console.log("creado correctamente")
+        //console.log("exito 1")
     },
 })
 

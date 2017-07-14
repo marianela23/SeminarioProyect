@@ -362,4 +362,42 @@ if (Meteor.isClient) {
             console.log("archivoCurso")
         }
     })
+
+    Template.editarCursosMaster.helpers({
+         editCurso: () => {
+             var appId = FlowRouter.getParam("_id");
+             console.log(crsMaster.find({_id:appId}).fetch())
+             return crsMaster.find({_id:appId}).fetch()
+         }
+    })
+
+    Template.editarCursosMaster.events({
+        'submit form'(event) {
+            // Get value from form element
+            var appId = FlowRouter.getParam("_id");
+            const target = event.target;
+            const nombre = target.nombrecurso.value;
+            const sigla = target.sigla.value;
+            const descripcion = target.descripcion.value;
+            const iduser = Meteor.user()._id;
+            
+            
+            // Insert a task into the collection
+            Meteor.call("editarCursoMaster",appId,nombre,descripcion,iduser, function(err, res) {
+                if (err) {
+                    console.log('Error: ' + err);
+                }
+                if (!err) {
+                    Session.set('editcursos', res);
+                }
+            });
+            // Clear form
+            target.nombrecurso.value = '';
+            
+            target.descripcion.value='';
+            console.log("registro correcto")
+            event.preventDefault();
+            return false;
+        },
+    })
 }

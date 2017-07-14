@@ -328,6 +328,7 @@
                      {{#if isInRole 'admin,facilitador'}}
                      <div class="col-md-6">
                         <button class="btn-warning btn" data-toggle="modal" data-target="#myModal"> Agregar Nueva Clase</button>
+                        <a href="/editar-curso/{{Vercurso._id}}" class="btn-danger btn"> Editar Este Curso</a>
                      </div>
                      {{/if}}
                   </div>
@@ -477,5 +478,71 @@
          </div>
       </div>
       {{/each}}
+   </div>
+</template>
+
+<template name="editarCursosMaster">
+   <div class="row">
+      <div class="col-md-8">
+         <div class="card">
+            <div class="card-header" data-background-color="purple">
+               <h4 class="title">Crear Nuevo Curso Master</h4>
+               <p class="category">Formulario para Crear un nuevo Curso</p>
+            </div>
+            <div class="card-content">
+                {{ #each editCurso}} 
+               <form>
+                  <div class="row">
+                     <div class="col-md-4">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Nombre del Curso</label>
+                           <input type="text" name="nombrecurso" class="form-control" value="{{nombre}}">
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="form-group label-floating is-focused">
+                           <label class="control-label">Sigla</label>
+                           <input type="text" name="sigla" class="form-control" value="{{sigla}}" disabled>
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label>Descripcion</label>
+                           <div class="form-group label-floating is-focused">
+                              <label class="control-label">Coloque una breve Descripcion del curso</label>
+                              <textarea name="descripcion" class="form-control" rows="5" value="{{descripcion}}"></textarea>
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary pull-right Cursos_crear">Editar Curso</button>
+                  <div class="clearfix"></div>
+               </form>
+               {{/each}} 
+            </div>
+         </div>
+      </div>
+      <div class="col-md-4">
+         <div class="card card-profile">
+            <div class="card-avatar">
+               <a href="#pablo">
+               <img class="img" src="/images/perfil.jpg">
+               </a>
+            </div>
+            <div class="content">
+               <h6 class="category text-gray">CEO / Co-Founder</h6>
+               <h4 class="card-title">Alec Thompson</h4>
+               <p class="card-content">
+                  Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+               </p>
+               <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+            </div>
+         </div>
+      </div>
    </div>
 </template>

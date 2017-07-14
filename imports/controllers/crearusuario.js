@@ -255,13 +255,13 @@ Template.editar_perfil.events({
 
 Template.editar_usuario.onCreated(function () {
     var appId = FlowRouter.getParam("_id");
-    console.log(appId)
+   // console.log(appId)
     Meteor.call("existeUsuario",appId, function(err, res) {
             if (err) {
                 console.log('Error: ' + err);
             }
             if (!err) {
-                console.log(res)
+          //      console.log(res)
                 Session.set('edituser', res);
             }
     });
@@ -323,7 +323,7 @@ Template.editar_usuario.events({
             Direccion:direccion,
             estado:estado
         }
-        console.log(password)
+        //console.log(password)
         if(password === ''){
             Meteor.call('EditarUsuario',appId ,email,profile,arrayRoles)
             //console.log("1")

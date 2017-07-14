@@ -226,7 +226,11 @@ Meteor.methods({
     'file-upload': function (fileInfo, fileData) {
       console.log("received file " + fileInfo.name + " data: " + fileData);
       FS.writeFile(fileInfo.name, fileData);
-    }
+    },
+    editarCursoMaster : function(appId,nombre,descripcion,iduser){
+        crsMaster.update(appId, {$set: {nombre: nombre,descripcion:descripcion,iduser:iduser}});
+        console.log("editado")
+    },
 });
 
 

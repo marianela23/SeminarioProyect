@@ -31,6 +31,31 @@ Template.main_principal.events({
         event.preventDefault();
         console.log("entro")
         Meteor.logout();
+    },
+
+    'submit #createRol': function(event,template){
+        event.preventDefault();
+        var appId = Meteor.userId();
+        const target = event.target;
+        
+        const rol = target.rol.value;
+        const des = target.Descripcion.value;
+
+        Meteor.call("createRole",rol,des, function(err, res) {
+           if (err) {
+                    console.log('Error: ' + err);
+            }
+            if (!err) {
+                    console.log("exit")
+            }
+        });
+        console.log(rol)
+        
+        $('#myModalroles').modal('toggle');
+        template.find("#createRol").reset();
+        event.preventDefault();
+        return false;
+    
     }
 });
 

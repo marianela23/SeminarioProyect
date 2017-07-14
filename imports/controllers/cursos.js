@@ -161,7 +161,7 @@ if (Meteor.isClient) {
                 reader.readAsArrayBuffer(file); //read the file as arraybuffer
             }*/
             console.log("guardado")
-            $('#myModal').hide()
+            $('#myModal').modal('toggle')
             template.find("form").reset();
             event.preventDefault();
             event.stopPropagation();
@@ -260,7 +260,7 @@ if (Meteor.isClient) {
                 reader.readAsArrayBuffer(file); //read the file as arraybuffer
             }*/
             console.log("guardado")
-            $('#myModal').hide()
+            $('#myModal').modal('toggle');
             template.find("form").reset();  
             event.preventDefault();
             event.stopPropagation();

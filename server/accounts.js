@@ -58,6 +58,13 @@ Meteor.methods({
     changePAssword:function(userId,newPassword){
         Accounts.setPassword(userId, newPassword)
         console.log("esc")
+    },
+    createRole:function(rol,des){
+        Meteor.roles.insert({
+            name:rol,
+            description:des,
+        })
+        console.log("creado")
     }
 })
 
@@ -66,3 +73,8 @@ Meteor.methods({
     var user = Meteor.users.findOne(this.userId)
     return user
 })*/
+
+Meteor.publish('roles',function(){
+    var roles = Meteor.roles.find();
+    return roles;
+})

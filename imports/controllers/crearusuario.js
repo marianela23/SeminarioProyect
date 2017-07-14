@@ -3,8 +3,15 @@ import { Index, MinimongoEngine } from 'meteor/easy:search'
 import '../templates/crearusuario.html';
 import {ars} from '../database/models.js';
 
+Meteor.subscribe('roles')
+Template.CrearUsuarios.helpers({
+    roles: () => {
+        var r = Meteor.roles.find().fetch()
+        return r
+    }
+})
 Template.CrearUsuarios.events({
-
+    
     'submit form': function(event,template) {
         event.preventDefault();
 

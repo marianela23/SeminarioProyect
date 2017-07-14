@@ -82,7 +82,9 @@
                   <div class="row">
                      <div class="col-md-4">
                         <label class="control-label" style="font-size:15px">Roles de Usuario</label>
+                        
                         <table>
+                            {{#each roles}}
                            <tr>
                               <td>
                                  <div class="checkbox">
@@ -91,28 +93,9 @@
                                     </label>
                                  </div>
                               </td>
-                              <td>Administrador</td>
+                              <td>{{name}}</td>
                            </tr>
-                           <tr>
-                              <td>
-                                 <div class="checkbox">
-                                    <label>
-                                    <input type="checkbox" class="checksbox" name="rol[]"  value="facilitador"><span class="checkbox-material"><span class="check"></span></span>
-                                    </label>
-                                 </div>
-                              </td>
-                              <td>Facilitador</td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <div class="checkbox">
-                                    <label>
-                                    <input type="checkbox" class="checksbox" name="rol[]" value="estudiante"><span class="checkbox-material"><span class="check"></span></span>
-                                    </label>
-                                 </div>
-                              </td>
-                              <td>Estudiante</td>
-                           </tr>
+                           {{/each}}
                         </table>
                         <!--<div class="form-group label-floating is-empty">
                            <label class="control-label"></label>

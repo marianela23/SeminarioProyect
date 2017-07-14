@@ -21,9 +21,15 @@
                   </li>
                   {{#if isInRole 'admin'}}
                   <li>
-                     <a href="/crear_usuarios">
+                     <a href="/crear_usuarios" >
                         <i class="material-icons">person</i>
                         <p>Crear Usuarios</p>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#"  data-toggle="modal" data-target="#myModalroles">
+                        <i class="material-icons">person</i>
+                        <p>Crear rol</p>
                      </a>
                   </li>
                   {{/if}}
@@ -175,6 +181,55 @@
             </footer>
          </div>
       </div>
+
+<div id="myModalroles" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Crear Nuevo Rol</h4>
+            </div>
+            <div class="modal-body">
+               <div class="card-content">
+                  <form method="POST" id="createRol"> 
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group label-floating is-empty">
+                              <label class="control-label">Nombre Rol</label>
+                              <input type="text" name="rol" class="form-control">
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-group label-floating is-empty">
+                              <label class="control-label">Descripcion</label>
+                              <input type="text" name="Descripcion" class="form-control">
+                              <span class="material-input"></span>
+                           </div>
+                        </div>
+                     </div>
+                     <button type="submit" class="btn btn-primary pull-right">Crear Rol</button>
+                     <div class="clearfix"></div>
+                  </form>
+               </div>
+            </div>
+
+            <!--<div class="fileupload fileupload-new" data-provides="fileupload">
+               <span class="btn btn-file">
+               <span class="fileupload-new">SSSS</span>
+               <span class="fileupload-exists">Andere</span>
+               <input name="xxx" class="file-upload-input" type="file"/>
+               </span>
+               <span class="fileupload-preview">
+               </span>
+               <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+            </div>-->
+         </div>
+      </div>
+   </div>
 </template>
 
 <template name="user">

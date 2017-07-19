@@ -5,7 +5,7 @@ import {ars} from '../imports/database/models.js';
 
 var postSignUp = function(userId,info){
     //Roles.addUsersToRoles(userId, ['corredor','pateador','golpeador'], 'real-madrid.com')
-    Roles.addUsersToRoles(userId,'admin')
+    Roles.addUsersToRoles(userId,'admin') // Facilitador admin estudiante
 }
 
 AccountsTemplates.configure({

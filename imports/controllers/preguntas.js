@@ -390,10 +390,11 @@ Template.preg_curso.helpers({
 Template.main_principal.helpers({
     notificaciones:function(){
         IDuser = Meteor.userId();
-        return notificaciones.find({estado:'N'},{sort:{createdAt:-1}}).fetch();
+        return notificaciones.find({estado:'N',perteneceIduser:IDuser},{sort:{createdAt:-1}}).fetch();
     },
     numNoti:function(){
-        var n = notificaciones.find({estado:'N'}).fetch()
+        IDuser = Meteor.userId();
+        var n = notificaciones.find({estado:'N',perteneceIduser:IDuser}).fetch()
         //console.log(n)
         //console.log(n.length)
         return n.length;

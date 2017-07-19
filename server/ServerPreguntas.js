@@ -21,6 +21,7 @@ Meteor.methods({
     rebajarpuntuacionPreguntas:function(id){
       var pcn = preg_curso.findOne({_id:id});
       puntosmenos = pcn.puntos_menos + 1;
+      user = Meteor.userId();
       preg_curso.update(id, {
         $set: { puntos_menos: puntosmenos},
         $push: { usercalifadosmenos: user }

@@ -60,7 +60,9 @@
                      {{else}}
                      {{/EasySearch.IfNoResults}}
                      {{#EasySearch.Each index=index}}
-                     {{> preg_curso}}
+                          
+                            {{> preg_curso}}
+                          
                      {{/EasySearch.Each}}
 					 <tr>
 						<td colspan="4">
@@ -94,6 +96,7 @@
 </template>
 
 <template name="preg_curso">
+
    <tr>
       <td class="usuario" axis ="collapseme-{{@index}}"><span>{{pregunta}}</span></td>
       <td class="usuario" axis ="collapseme-{{@index}}"><span>{{username}}</span></td>
@@ -111,6 +114,7 @@
       </span></td>
       <td class="usuario" axis ="collapseme-{{@index}}"><span><a href="/responder-pregunta-curso/{{__originalId}}" class="btn btn-danger">Responder a la Pregunta</a></span></td>
    </tr>
+
  <!--  <tr id="collapseme-{{@index}}" class="collapse out"> 
       {{#if selected}}
       <td colspan="2">

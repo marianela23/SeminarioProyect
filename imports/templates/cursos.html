@@ -330,8 +330,8 @@
                          {{#if isInRole 'admin,facilitador'}}
                             <button class="btn-warning btn" data-toggle="modal" data-target="#myModal"> Agregar Nueva Clase</button>
                             <a href="/editar-curso/{{Vercurso._id}}" class="btn-danger btn"> Editar Este Curso</a>
-                            <a href="/pregunta-curso/{{Vercurso._id}}" class="btn-primary btn">Preguntas</a>
                         {{/if}}
+                            <a href="/pregunta-curso/{{Vercurso._id}}" class="btn-primary btn">Preguntas</a>
                      </div>
                      
                   </div>
@@ -450,12 +450,15 @@
                      <div class="col-md-6">
                         <h3>Clases o Materiales Del curso all</h3>
                      </div>
-                     {{#if isInRole 'admin'}}
+                     
                      <div class="col-md-6">
-                        <button class="btn-warning btn" data-toggle="modal" data-target="#myModal"> Agregar Nueva Clase</button>
-                        <a href="/editar-curso/{{Vercurso._id}}" class="btn-danger btn"> Editar Este Curso</a>
+                         {{#if isInRole 'admin'}}
+                            <button class="btn-warning btn" data-toggle="modal" data-target="#myModal"> Agregar Nueva Clase</button>
+                            <a href="/editar-curso/{{Vercurso._id}}" class="btn-danger btn"> Editar Este Curso</a>
+                        {{/if}}
+                            <a href="/pregunta-curso/{{Vercurso._id}}" class="btn-primary btn">Preguntas</a>
                      </div>
-                     {{/if}}
+                     
                   </div>
                </div>
             </div>

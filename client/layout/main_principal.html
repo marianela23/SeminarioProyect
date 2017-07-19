@@ -106,13 +106,13 @@
                         <li class="dropdown">
                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                               <i class="material-icons">notifications</i>
-                              <span class="notification">5</span>
+                              <span class="notification">{{numNoti}}</span>
                               <p class="hidden-lg hidden-md">Notifications</p>
                            </a>
                            <ul class="dropdown-menu">
-                              <li><a href="#">Notificaciones 1</a></li>
-                              <li><a href="#">Notificaciones 2</a></li>
-                              <li><a href="#">Notificaciones 3</a></li>
+                              {{#each notificaciones}}
+                                          <li><a href="/responder-pregunta-curso/{{idPregunta}}" rev="{{_id}}" class="btnNotificacion"><b>{{usernameResp}}</b> {{verficartipo tipo}} <b>{{notificacion}}</b></a></li>
+                              {{/each}}
                            </ul>
                         </li>
                          <li class="dropdown">

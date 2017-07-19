@@ -15,12 +15,23 @@ if (Meteor.isClient) {
 
      Meteor.subscribe('preguntas_curso')
      Meteor.subscribe('respuestas_curso') 
+     Meteor.subscribe('notificaciones',20) 
 
 Template.preguntas_curso.helpers({
     playesrsIndexPregCurso: () => playesrsIndexPregCurso,
+    
+    Curso:(idCurso)=>{
+        var appId = FlowRouter.getParam("_id");
+        if(appId === idCurso){
+            console.log("entro")
+            return true
+        }
+    },
+
     preguntas_curso:()=>{
         var appId = FlowRouter.getParam("_id");
-        console.log(preg_curso.find({}).fetch()) 
+        console.log(preg_curso.find({idCurso:appId}).fetch()) 
+        return preg_curso.find({idCurso:appId}).fetch()
     },
     //////////////
     inputAttributes: function(){
@@ -29,8 +40,8 @@ Template.preguntas_curso.helpers({
     },
     players: function(){
         console.log('players')
-        console.log(preg.find({},{sort:{createdAt:-1}}))
-        return preg.find({},{sort:{createdAt:-1}})
+        console.log(preg_curso.find({},{sort:{createdAt:-1}}))
+        return preg_curso.find({},{sort:{createdAt:-1}})
     },
     /*selectdName:function(){
         var joke = PreguntasIndex.config.mongoCollection.findOne({__originalId:Session.get("selectedUsuario")})
@@ -83,6 +94,7 @@ Template.preguntas_curso.events({
        createdAt: new Date(), // current time
     });
  
+
     // Clear form
     target.createpregunta.value = '';
     console.log("registro correcto")
@@ -106,6 +118,27 @@ Template.preg_curso.events({
             }
         })
 
+        var notrespuesta = preg_curso.findOne({
+            _id: idmas,
+        });
+
+        IDuser = Meteor.userId();
+
+        var usernormal = Meteor.user().profile.Username;
+        if (usernormal == undefined) {
+            usernormal = Meteor.user().profile.name;
+        }
+        notificaciones.insert({
+            notificacion:notrespuesta.pregunta,
+            idPregunta: idmas,
+            perteneceIduser:notrespuesta.iduser,
+            tipo:'like_MM_pregunta',
+            estado:'N',
+            usernameResp:usernormal,
+            iduserResp:IDuser,
+            createdAt: new Date(),
+        });
+
     },
     'click .menos1'(event){
         
@@ -119,6 +152,27 @@ Template.preg_curso.events({
                 console.log(res)
             }
         })
+
+        var notrespuesta = preg_curso.findOne({
+            _id: idmenos,
+        });
+
+        IDuser = Meteor.userId();
+
+        var usernormal = Meteor.user().profile.Username;
+        if (usernormal == undefined) {
+            usernormal = Meteor.user().profile.name;
+        }
+        notificaciones.insert({
+            notificacion:notrespuesta.pregunta,
+            idPregunta: idmenos,
+            perteneceIduser:notrespuesta.iduser,
+            tipo:'like_M_pregunta',
+            estado:'N',
+            usernameResp:usernormal,
+            iduserResp:IDuser,
+            createdAt: new Date(),
+        });
     },
 });
 
@@ -191,7 +245,7 @@ Template.preg_curso.helpers({
     selected:function(){
        // console.log(Session.equals("selectedUsuario",this.__originalId)? "selected":'')
         return Session.equals("selectedUsuario",this.__originalId)? "selected":'';
-    }
+    },
 })
 
     Template.respuestas_pregunta_curso.helpers({
@@ -237,7 +291,22 @@ Template.preg_curso.helpers({
                 usercalficadosmenos:[],
                 createdAt: new Date(), // current time
             });
-        
+            /// crear una notificacion para el usuario que creo la pregunta
+            var pregunta = preg_curso.findOne({
+                _id: idpreg,
+            });
+            console.log(pregunta)
+            notificaciones.insert({
+                notificacion:pregunta.pregunta,
+                idPregunta: idpreg,
+                perteneceIduser:pregunta.iduser,
+                tipo:'respuesta_pregunta',
+                estado:'N',
+                usernameResp:usernormal,
+                iduserResp:IDuser,
+                createdAt: new Date(),
+            });
+            //////
             // Clear form
             target.resp.value = '';
             console.log("registro correcto")
@@ -246,7 +315,11 @@ Template.preg_curso.helpers({
         },
 
         'click .repMas1'(event){
-        
+            var appId = FlowRouter.getParam("_id");
+            var usernormal = Meteor.user().profile.Username;
+            if (usernormal == undefined) {
+                usernormal = Meteor.user().profile.name;
+            }
             idmas = $(event.currentTarget).attr('href')
 
             Meteor.call("subirpuntuacionRespuestas",idmas, function(err, res) {
@@ -257,10 +330,27 @@ Template.preg_curso.helpers({
                     console.log(res)
                 }
             })
+
+            var notrespuesta = preg_curso.findOne({
+                _id: appId,
+            });
+
+            IDuser = Meteor.userId();
+
+            notificaciones.insert({
+                notificacion:notrespuesta.pregunta,
+                idPregunta: appId,
+                perteneceIduser:notrespuesta.iduser,
+                tipo:'like_MM_respuesta',
+                estado:'N',
+                usernameResp:usernormal,
+                iduserResp:IDuser,
+                createdAt: new Date(),
+            });
             return false
         },
         'click .repMenos1'(event){
-            
+            var appId = FlowRouter.getParam("_id");
             idmenos = $(event.currentTarget).attr('href')
 
             Meteor.call("rebajarpuntuacionRespuestas",idmenos, function(err, res) {
@@ -271,17 +361,82 @@ Template.preg_curso.helpers({
                     console.log(res)
                 }
             })
+
+            var notrespuesta = preg_curso.findOne({
+                _id: appId,
+            });
+
+            IDuser = Meteor.userId(); 
+
+            var usernormal = Meteor.user().profile.Username;
+            if (usernormal == undefined) {
+                usernormal = Meteor.user().profile.name;
+            }
+            notificaciones.insert({
+                notificacion:notrespuesta.pregunta,
+                idPregunta: appId,
+                perteneceIduser:notrespuesta.iduser,
+                tipo:'like_M_respuesta',
+                estado:'N',
+                usernameResp:usernormal,
+                iduserResp:IDuser,
+                createdAt: new Date(),
+            });
             return false
         },
     });
 
+////helpers notificaciones////
+Template.main_principal.helpers({
+    notificaciones:function(){
+        IDuser = Meteor.userId();
+        return notificaciones.find({estado:'N'},{sort:{createdAt:-1}}).fetch();
+    },
+    numNoti:function(){
+        var n = notificaciones.find({estado:'N'}).fetch()
+        //console.log(n)
+        //console.log(n.length)
+        return n.length;
+    },
+    verficartipo:function(tipo){
+        if(tipo === "respuesta_pregunta"){
+            return "respondio a su pregunta"
+        }
+        if(tipo === "like_MM_respuesta"){
+            return "Le gusto tu respuesta"
+        }
+        if(tipo === "like_M_respuesta"){
+            return "NO Le gusto tu respuesta"
+        }
+        if(tipo === "like_MM_pregunta"){
+            return "Le gusto tu pregunta"
+        }
+        if(tipo === "like_M_pregunta"){
+            return "NO Le gusto tu pregunta"
+        }
+    }
+});
 
+Template.main_principal.events({
+    'click .btnNotificacion'(event){
+        idnot = $(event.currentTarget).attr('rev')
+        Meteor.call("notificacion",idnot, function(err, res) {
+            if (err) {
+                console.log('Error: ' + err);
+            }
+            if (!err) {
+                console.log(res)
+            }
+        })
+    },
+});
+/////////////////////////////
 
 Template.preg.helpers({
     selected:function(){
        // console.log(Session.equals("selectedUsuario",this.__originalId)? "selected":'')
         return Session.equals("selectedUsuario",this.__originalId)? "selected":'';
-    }
+    },
 })
 
 /*Template.preg.events({

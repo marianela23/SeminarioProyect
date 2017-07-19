@@ -63,7 +63,10 @@ Template.CrearUsuarios.events({
 Template['Override-EasySearch.Pagination'].replaces('EasySearch.Pagination');
 
 Template.full_usuarios.helpers({
-    playesrsIndex: () => PlayersIndex,
+    playesrsIndex: () => {
+        console.log(PlayersIndex)
+        PlayersIndex
+    },
     usuarios:()=>{
         console.log(Meteor.users.find({}).fetch()) 
     },

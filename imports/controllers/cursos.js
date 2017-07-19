@@ -60,7 +60,14 @@ if (Meteor.isClient) {
             });
             //console.log(curso)
             return curso;
-        }
+        },
+
+        allClases:()=>{
+            var appId = FlowRouter.getParam("sigla");
+            //console.log(crs.find({}).fetch())
+            return crs.find({sigla:appId}).fetch()
+            //return files.file.getFileRecord()
+        },
     });
 
     Template.ver_curso_clase_archivos.helpers({
@@ -325,7 +332,7 @@ if (Meteor.isClient) {
 
     
     //Template.ver_curso.helpers({
-    Template.ver_cursoMaster.helpers({
+    Template.ver_cursoMasterAll.helpers({
         VerMaterialCurso: () => {
             console.log(Session.get('GetDecodeArchivos'))
             return Session.get('GetDecodeArchivos');
@@ -365,7 +372,61 @@ if (Meteor.isClient) {
         },
         archivoCurso: (data) => { 
             console.log("archivoCurso")
+        },
+        Vercurso: () => {
+            var appId = FlowRouter.getParam("sigla");
+            var curso = crsMaster.findOne({
+                sigla: appId,
+            });
+            //console.log(curso)
+            return curso;
         }
+    })
+
+    Template.ver_cursoMasterAll.events({
+        'submit form': function(event,template) { // also tried just 'submit', both work for me!
+            console.log('Submitting form!');
+
+            const target = event.target;
+            const nombre = target.nombreMaterial.value;
+            const descripcion = target.descripcionMaterial.value;
+            const video = target.videoMaterial.files;
+            const sigla = target.sigla.value;
+            const id = target.rca.value;
+            const typeFile = "video"
+            const identificador = sigla+""+id
+            var files = video;
+
+            
+            for (var i = 0, ln = files.length; i < ln; i++) {
+                var fileObj = fls.insert(files[i]); 
+
+                crs.insert({
+                    nombreClase:nombre,
+                    descripcionClase:descripcion,
+                    sigla: sigla,
+                    idcurso:id,
+                    type:typeFile,
+                    identi:identificador,
+                    file:fileObj,
+                    createdAt:new Date()
+                });
+            
+            }
+
+            console.log("guardado")
+            $('#myModal').modal('toggle');
+            swal(
+                'Exito!',
+                'Clase creada correctamente!',
+                'success'
+            )
+            template.find("form").reset();  
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        },
+
     })
 
     Template.editarCursosMaster.helpers({

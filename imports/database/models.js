@@ -6,7 +6,11 @@ export const ars = new Mongo.Collection('archivos');
 export const msg = new Mongo.Collection('messages')
 export const msgClases = new Mongo.Collection('msgClases')
 export const preg = new Mongo.Collection('preguntas')
+export const preg_curso = new Mongo.Collection('preguntas_curso')
 export const resp = new Mongo.Collection('respuestas')
+export const resp_curso = new Mongo.Collection('respuestas_curso')
+
+export const notificaciones = new Mongo.Collection('notificaciones')
 /*export const fls = new FS.Collection("files", {
                 stores: [new FS.Store.FileSystem("files", {path: "public/images  "})]
             });*/
@@ -73,6 +77,34 @@ PreguntasIndex = new EasySearch.Index({
         }
     }),
     collection:preg,
+    fields:['pregunta'],
+    defaultSearchOptions:{
+        limit:8 
+    },
+    permission:()=>{
+        return true
+    }
+});
+
+PreguntasIndexCurso = new EasySearch.Index({
+    engine:new EasySearch.MongoDB({
+        sort:function(){
+            return {createdAt:1}
+        },
+        selector:function(searchObject,options,aggregation){
+            let selector = this.defaultConfiguration().selector(searchObject,options,aggregation),
+            categoryFilter = options.search.props.categoryFilter;
+
+            //if(_isString(categoryFilter) && !_.isEmpty(categoryFilter)){
+                selector.category = categoryFilter;
+            //}
+            //console.log(categoryFilter)
+            //console.log(selector.pregunta)
+            return selector
+            
+        }
+    }),
+collection:preg_curso,
     fields:['pregunta'],
     defaultSearchOptions:{
         limit:8 

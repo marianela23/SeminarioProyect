@@ -2,10 +2,125 @@ import { Template } from 'meteor/templating';
 import '../../imports/templates/preguntas.html';
 import { preg } from '../database/models.js';
 import { resp } from '../database/models.js';
+
+import { preg_curso } from '../database/models.js';
+import { resp_curso } from '../database/models.js';
+
+import { notificaciones } from '../database/models.js';
+
 if (Meteor.isClient) {
 
     Meteor.subscribe('preguntas')
     Meteor.subscribe('respuestas')
+
+     Meteor.subscribe('preguntas_curso')
+     Meteor.subscribe('respuestas_curso') 
+
+Template.preguntas_curso.helpers({
+    playesrsIndexPregCurso: () => playesrsIndexPregCurso,
+    preguntas_curso:()=>{
+        var appId = FlowRouter.getParam("_id");
+        console.log(preg_curso.find({}).fetch()) 
+    },
+    //////////////
+    inputAttributes: function(){
+        //console.log('atributes')
+        return {'class':'form-control','placeholder':'Buscar Pregunta'}  
+    },
+    players: function(){
+        console.log('players')
+        console.log(preg.find({},{sort:{createdAt:-1}}))
+        return preg.find({},{sort:{createdAt:-1}})
+    },
+    /*selectdName:function(){
+        var joke = PreguntasIndex.config.mongoCollection.findOne({__originalId:Session.get("selectedUsuario")})
+        console.log('joke')
+        console.log(joke)
+        return joke && joke.emails;
+    },*/
+    index:function(){
+        // console.log('index')
+        return PreguntasIndexCurso;
+    },
+    resultsCount:function(){
+       // console.log('resultscount')
+       // console.log(PreguntasIndexCurso.getComponentDict().get('count') ) 
+        return PreguntasIndexCurso.getComponentDict().get('count');
+    },
+    /*showMore:function(){
+        console.log('showmore')
+       return false;
+    },*/
+    renderTmpl:()=>template.renderTemplate
+});
+
+
+Template.preguntas_curso.events({
+  'submit #crearPregunta'(event) {
+    event.preventDefault();
+    var appId = FlowRouter.getParam("_id")    
+    // Get value from form element
+    const target = event.target;
+    const pregunta = target.createpregunta.value;
+    
+    var usernormal = Meteor.user().profile.Username;
+    if (usernormal == undefined) {
+        usernormal = Meteor.user().profile.name;
+    }
+
+    IDuser = Meteor.userId();
+    console.log(usernormal)
+    // Insert a task into the collection
+    preg_curso.insert({
+       idCurso : appId,
+       pregunta:pregunta,
+       username:usernormal,
+       iduser: IDuser,
+       puntos_mas : 0,
+       puntos_menos: 0,
+       usercalficadosmas:[],
+       usercalficadosmenos:[],
+       createdAt: new Date(), // current time
+    });
+ 
+    // Clear form
+    target.createpregunta.value = '';
+    console.log("registro correcto")
+    event.preventDefault();
+    return false;
+  },
+});
+
+Template.preg_curso.events({
+    'click .mas1'(event){
+        
+        idmas = $(event.currentTarget).attr('href')
+
+        
+        Meteor.call("subirpuntuacionPreguntas",idmas, function(err, res) {
+            if (err) {
+                console.log('Error: ' + err);
+            }
+            if (!err) {
+                console.log(res)
+            }
+        })
+
+    },
+    'click .menos1'(event){
+        
+        idmenos = $(event.currentTarget).attr('href')
+
+        Meteor.call("rebajarpuntuacionPreguntas",idmenos, function(err, res) {
+            if (err) {
+                console.log('Error: ' + err);
+            }
+            if (!err) {
+                console.log(res)
+            }
+        })
+    },
+});
 
 Template.preguntas.events({
   'submit #crearPregunta'(event) {
@@ -70,6 +185,97 @@ Template.preguntas.helpers({
     },*/
     renderTmpl:()=>template.renderTemplate
 });
+
+
+Template.preg_curso.helpers({
+    selected:function(){
+       // console.log(Session.equals("selectedUsuario",this.__originalId)? "selected":'')
+        return Session.equals("selectedUsuario",this.__originalId)? "selected":'';
+    }
+})
+
+    Template.respuestas_pregunta_curso.helpers({
+        Verpregunta: () => {
+            var appId = FlowRouter.getParam("_id");
+            var pregunta = preg_curso.findOne({
+                _id: appId,
+            });
+            return pregunta
+        },
+        VerRespuestas: () => {
+            var appId = FlowRouter.getParam("_id");
+            var respuesta = resp_curso.find({
+                idPreg: appId,
+            }).fetch();
+            //console.log(respuesta)
+            return respuesta
+        }
+    })
+
+    Template.respuestas_pregunta_curso.events({
+        'submit #repsPregunta'(event) {
+            event.preventDefault();
+            // Get value from form element
+            const target = event.target;
+            const resps = target.resp.value;
+            const idpreg = target.rca.value;
+            var usernormal = Meteor.user().profile.Username;
+            if (usernormal == undefined) {
+                usernormal = Meteor.user().profile.name;
+            }
+            IDuser = Meteor.userId();
+            console.log(usernormal)
+            // Insert a task into the collection
+            resp_curso.insert({
+                respuesta:resps,
+                username:usernormal,
+                iduser:IDuser,
+                idPreg:idpreg,
+                puntos_mas : 0,
+                puntos_menos: 0,
+                usercalficadosmas:[],
+                usercalficadosmenos:[],
+                createdAt: new Date(), // current time
+            });
+        
+            // Clear form
+            target.resp.value = '';
+            console.log("registro correcto")
+            event.preventDefault();
+            return false;
+        },
+
+        'click .repMas1'(event){
+        
+            idmas = $(event.currentTarget).attr('href')
+
+            Meteor.call("subirpuntuacionRespuestas",idmas, function(err, res) {
+                if (err) {
+                    console.log('Error: ' + err);
+                }
+                if (!err) {
+                    console.log(res)
+                }
+            })
+            return false
+        },
+        'click .repMenos1'(event){
+            
+            idmenos = $(event.currentTarget).attr('href')
+
+            Meteor.call("rebajarpuntuacionRespuestas",idmenos, function(err, res) {
+                if (err) {
+                    console.log('Error: ' + err);
+                }
+                if (!err) {
+                    console.log(res)
+                }
+            })
+            return false
+        },
+    });
+
+
 
 Template.preg.helpers({
     selected:function(){
